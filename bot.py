@@ -7,6 +7,7 @@ class Bot:
             self.messages = ["Jao, vamos contar carneirinhos?"]
             self.chats = ['Ana']
             options = webdriver.ChromeOptions()
+            options.add_argument('--user-data-dir=./User_Data')
             options.add_argument('lang=pt-br')
             self.driver = webdriver.Chrome(
                 executable_path=r'./chromedriver', chrome_options=options)
@@ -15,7 +16,7 @@ class Bot:
             self.driver.get('https://web.whatsapp.com')
             time.sleep(20)
             for chat in self.chats:
-                chat_field = self.driver.find_element_by_xpath("//span[@title='Ana']")
+                chat_field = self.driver.find_element_by_xpath("//span[@title='"+chat+"']")
                 time.sleep(3)
                 chat_field.click()
                 for message in self.messages:
